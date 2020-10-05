@@ -61,14 +61,14 @@
             {{#if inheritance}}
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">{{t "inherited-from" }} {{> link-type type=inheritance.file }}</div>
+                    <div class="io-line">{{t "inherited-from" }} {{> link-type2 type=inheritance.file }}</div>
                 </td>
             </tr>
             {{/if}}
             <tr>
                 <td class="col-md-4">
                     {{#if inheritance}}
-                        <div class="io-line">{{t "defined-in" }} {{> link-type type=inheritance.file withline=true }}</div>
+                        <div class="io-line">{{t "defined-in" }} {{> link-type2 type=inheritance.file withline=true }}</div>
                     {{else}}
                     <div class="io-line">{{t "defined-in" }} <a href="" data-line="{{{line}}}"
                             class="link-to-prism">{{../file}}:{{{line}}}</a></div>
@@ -130,7 +130,7 @@
                                     {{#one-parameter-has ../tags 'type'}}
                                     <td>
                                         {{#if type}}
-                                        {{> link-type type=type }}
+                                        {{> link-type2 type=type }}
                                         {{/if}}
                                     </td>
                                     {{/one-parameter-has}}
@@ -178,7 +178,7 @@
                     {{/if}}
                     {{#if returnType}}
                     <div class="io-description">
-                        <b>{{t "returns" }} : </b>{{> link-type type=returnType }}
+                        <b>{{t "returns" }} : </b>{{> link-type2 type=returnType }}
                     </div>
                     {{#if jsdoctags}}
                     <div class="io-description">

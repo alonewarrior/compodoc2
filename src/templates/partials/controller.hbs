@@ -44,7 +44,7 @@
                 <h3>{{t "extends" }}</h3>
             </p>
             <p class="comment">
-                {{> link-type type=controller.extends }}
+                {{> link-type2 type=controller.extends }}
             </p>
         {{/if}}
 
@@ -54,7 +54,7 @@
             </p>
             <p class="comment">
                 {{#each controller.implements}}
-                    {{> link-type type=this}}
+                    {{> link-type2 type=this}}
                 {{/each}}
             </p>
         {{/if}}

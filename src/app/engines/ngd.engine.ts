@@ -1,7 +1,10 @@
 import DependenciesEngine from './dependencies.engine';
 import FileEngine from './file.engine';
+import * as ngdT from '../../utils/ngd-transformer';
 
-const ngdT = require('@compodoc/ngd-transformer');
+// const ngdT = require('@compodoc/ngd-transformer');
+// Temporary fix until ngd-transformer has a fix to its usage of Viz.js
+// const ngdT = require('../../utils/ngd-transformer');
 
 export class NgdEngine {
     public engine;

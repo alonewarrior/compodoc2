@@ -50,6 +50,7 @@ export class HtmlEngine {
             'search-results',
             'search-input',
             'link-type',
+            'link-type2',
             'block-method',
             'block-enum',
             'block-property',

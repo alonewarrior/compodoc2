@@ -29,7 +29,8 @@ export class AboutComponent {
      * HostListener mouseup description
      */
     @HostListener('mouseup', ['$event.clientX', '$event.clientY'])
-    onMouseup(mouseX: number, mouseY: number): void {}
+    onMouseup(mouseX: number, mouseY: number): void {
+    }
 
     chartOptions: Highcharts.Options = {
         colors: [
@@ -88,5 +89,6 @@ export class AboutComponent {
         return '';
     }
 
-    public async foo(): Promise<any> {}
+    public async foo(): Promise<any> {
+    }
 }

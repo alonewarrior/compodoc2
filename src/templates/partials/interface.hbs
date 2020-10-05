@@ -35,7 +35,7 @@
                 <h3>{{t "extends" }}</h3>
             </p>
             <p class="comment">
-                {{> link-type type=interface.extends }}
+                {{> link-type2 type=interface.extends }}
             </p>
         {{/if}}
 
@@ -123,7 +123,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>{{name}}: {{> link-type type=type }}</code>
+                                        <code>{{name}}: {{> link-type2 type=type }}</code>
                                     </td>
                                 </tr>
 
@@ -138,7 +138,7 @@
                                 {{#if type}}
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>{{t "type" }} : </i>{{> link-type type=type }}
+                                            <i>{{t "type" }} : </i>{{> link-type2 type=type }}
                                         </td>
                                     </tr>
                                 {{/if}}
@@ -182,7 +182,7 @@
                                 {{#if returnType}}
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>{{t "returns" }} : </i>{{> link-type type=returnType }}
+                                            <i>{{t "returns" }} : </i>{{> link-type2 type=returnType }}
                                         </td>
                                     </tr>
                                 {{/if}}
@@ -215,7 +215,7 @@
                                                                     {{#one-parameter-has ../tags 'type'}}
                                                                         <td>
                                                                             {{#if type}}
-                                                                                {{> link-type type=type }}
+                                                                                {{> link-type2 type=type }}
                                                                             {{/if}}
                                                                         </td>
                                                                     {{/one-parameter-has}}

@@ -1,4 +1,6 @@
-let ngdT = require('@compodoc/ngd-transformer');
+// let ngdT = require('@compodoc/ngd-transformer');
+// Temporary fix until ngd-transformer has a fix to its usage of Viz.js
+let ngdT = require('../src/utils/ngd-transformer');
 let ngdC = require('@compodoc/ngd-compiler');
 let ngdCr = require('@compodoc/ngd-core');
 

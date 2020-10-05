@@ -58,11 +58,11 @@
                                                         {{#if name}}
                                                             <td>{{name}}</td>
                                                         {{/if}}
-                                                        
+
                                                         {{#one-parameter-has ../tags 'type'}}
                                                             <td>
                                                                 {{#if type}}
-                                                                    {{> link-type type=type }}
+                                                                    {{> link-type2 type=type }}
                                                                 {{/if}}
                                                             </td>
                                                         {{/one-parameter-has}}
@@ -74,7 +74,7 @@
                                                                 {{t "no" }}
                                                             {{/if}}
                                                         </td>
-                                                        
+
                                                         {{#one-parameter-has ../tags 'comment'}}
                                                             <td>
                                                                 {{#if comment}}
@@ -102,7 +102,7 @@
                             {{/if}}
                             {{#if this.getSignature.returnType}}
                                 <div class="io-description">
-                                    <b>{{t "returns" }} : </b>{{> link-type type=this.getSignature.returnType }}
+                                    <b>{{t "returns" }} : </b>{{> link-type2 type=this.getSignature.returnType }}
                                 </div>
                                 {{#if jsdoctags}}
                                     <div class="io-description">
@@ -161,15 +161,15 @@
                                                         {{#if name}}
                                                             <td>{{name}}</td>
                                                         {{/if}}
-                                                    
+
                                                         {{#one-parameter-has ../tags 'type'}}
                                                             <td>
                                                                 {{#if type}}
-                                                                    {{> link-type type=type }}
+                                                                    {{> link-type2 type=type }}
                                                                 {{/if}}
                                                             </td>
                                                         {{/one-parameter-has}}
-                                                    
+
                                                         <td>
                                                             {{#if optional}}
                                                                 {{t "yes" }}
@@ -177,7 +177,7 @@
                                                                 {{t "no" }}
                                                             {{/if}}
                                                         </td>
-                                                        
+
                                                         {{#one-parameter-has ../tags 'comment'}}
                                                             <td>
                                                                 {{#if comment}}
@@ -205,7 +205,7 @@
                             {{/if}}
                             {{#if this.setSignature.returnType}}
                                 <div class="io-description">
-                                    <b>{{t "returns" }} : </b>{{> link-type type=this.setSignature.returnType }}
+                                    <b>{{t "returns" }} : </b>{{> link-type2 type=this.setSignature.returnType }}
                                 </div>
                                 {{#if jsdoctags}}
                                     <div class="io-description">

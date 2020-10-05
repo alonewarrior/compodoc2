@@ -19,7 +19,7 @@
         <h3>{{t "extends" }}</h3>
     </p>
     <p class="comment">
-        {{> link-type type=component.extends }}
+        {{> link-type2 type=component.extends }}
     </p>
 {{/if}}
 
@@ -29,7 +29,7 @@
     </p>
     <p class="comment">
         {{#each component.implements}}
-            {{> link-type type=this}}
+            {{> link-type2 type=this}}
         {{/each}}
     </p>
 {{/if}}
@@ -79,7 +79,7 @@
                 <td class="col-md-3">entryComponents</td>
                 <td class="col-md-9">
                     {{#each component.entryComponents}}
-                        {{> link-type type=name }}
+                        {{> link-type2 type=name }}
                     {{/each}}
                 </td>
             </tr>
@@ -125,7 +125,7 @@
                 <td class="col-md-3">providers</td>
                 <td class="col-md-9">
                     {{#each component.providers}}
-                        {{> link-type type=name }}
+                        {{> link-type2 type=name }}
                     {{/each}}
                 </td>
             </tr>
@@ -179,7 +179,7 @@
                 <td class="col-md-9">
                     <code>
                     {{#each component.viewProviders}}
-                        {{> link-type type=name }}
+                        {{> link-type2 type=name }}
                     {{/each}}
                     </code>
                 </td>

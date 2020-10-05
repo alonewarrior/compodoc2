@@ -167,7 +167,7 @@ describe('CLI simple generation', () => {
         });
 
         it('it should display c-style typed arrays', () => {
-            expect(fooServiceFile).to.contain('<code>string');
+            expect(fooServiceFile).to.contain('<code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>');
         });
     });
 

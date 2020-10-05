@@ -23,10 +23,6 @@
         "indent": [
             0
         ],
-        "linebreak-style": [
-            "error",
-            "unix"
-        ],
         "quotes": [
             0
         ],

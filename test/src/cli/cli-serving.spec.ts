@@ -1,5 +1,6 @@
 import * as chai from 'chai';
 import { temporaryDir, shell, pkg, exists, exec, read, shellAsync } from '../helpers';
+
 const expect = chai.expect,
     tmp = temporaryDir();
 
@@ -12,7 +13,7 @@ describe('CLI serving', () => {
             child;
         before(function(done) {
             tmp.create(distFolder);
-            let ls = shell('node', ['./bin/index-cli.js', '-s', '-d', distFolder], {
+            let ls = shell('node', ['./bin/index-cli.js', '-s', '-d', distFolder, '--port', '8081'], {
                 timeout: TIMEOUT
             });
 
@@ -21,13 +22,16 @@ describe('CLI serving', () => {
                 done('error');
             }
             stdoutString = ls.stdout.toString();
+            // console.log(stdoutString);
             done();
         });
-        after(() => tmp.clean(distFolder));
+        after(() => {
+            tmp.clean(distFolder);
+        });
 
         it('should serve', () => {
             expect(stdoutString).to.contain(
-                `Serving documentation from ${distFolder} at http://127.0.0.1:8080`
+                `Serving documentation from ${distFolder} at http://127.0.0.1:8081`
             );
         });
     });
@@ -43,7 +47,8 @@ describe('CLI serving', () => {
                     './bin/index-cli.js',
                     '-p',
                     './test/fixtures/sample-files/tsconfig.simple.json',
-                    '-s'
+                    '-s',
+                    '--port', '8082'
                 ],
                 { timeout: 25000 }
             );
@@ -53,12 +58,13 @@ describe('CLI serving', () => {
                 done('error');
             }
             stdoutString = ls.stdout.toString();
+            // console.log(stdoutString);
             done();
         });
 
         it('should display message', () => {
             expect(stdoutString).to.contain(
-                'Serving documentation from ./documentation/ at http://127.0.0.1:8080'
+                'Serving documentation from ./documentation/ at http://127.0.0.1:8082'
             );
         });
     });
@@ -72,11 +78,11 @@ describe('CLI serving', () => {
                 'node',
                 [
                     './bin/index-cli.js',
-                    '-p',
-                    './test/fixtures/sample-files/tsconfig.simple.json',
+                    '-p', './test/fixtures/sample-files/tsconfig.simple.json',
                     '-s',
-                    '--host',
-                    '127.0.0.2'
+                    '--host', '127.0.0.2',
+                    '--port', '8083'
+                    // '-d', './documentation/'
                 ],
                 { timeout: 25000 }
             );
@@ -86,12 +92,13 @@ describe('CLI serving', () => {
                 done('error');
             }
             stdoutString = ls.stdout.toString();
+            // console.log(stdoutString);
             done();
         });
 
         it('should display message', () => {
             expect(stdoutString).to.contain(
-                'Serving documentation from ./documentation/ at http://127.0.0.2:8080'
+                'Serving documentation from ./documentation/ at http://127.0.0.2:8083'
             );
         });
     });
@@ -100,7 +107,7 @@ describe('CLI serving', () => {
         let stdoutString = '',
             child;
         before(function(done) {
-            let ls = shell('node', ['./bin/index-cli.js', '-s', '-d', './documentation/'], {
+            let ls = shell('node', ['./bin/index-cli.js', '-s', '-d', './documentation/', '--port', '8084'], {
                 timeout: TIMEOUT
             });
 
@@ -109,12 +116,13 @@ describe('CLI serving', () => {
                 done('error');
             }
             stdoutString = ls.stdout.toString();
+            // console.log(stdoutString);
             done();
         });
 
         it('should display message', () => {
             expect(stdoutString).to.contain(
-                'Serving documentation from ./documentation/ at http://127.0.0.1:8080'
+                'Serving documentation from ./documentation/ at http://127.0.0.1:8084'
             );
         });
     });
@@ -123,20 +131,23 @@ describe('CLI serving', () => {
         let stdoutString = '',
             child;
         before(function(done) {
-            let ls = shell('node', ['./bin/index-cli.js', '-s'], { timeout: TIMEOUT });
+            let ls = shell('node', ['./bin/index-cli.js', '-s', '--port', '8085'], { timeout: TIMEOUT });
 
             if (ls.stderr.toString() !== '') {
                 console.error(`shell error: ${ls.stderr.toString()}`);
                 done('error');
             }
             stdoutString = ls.stdout.toString();
+            // console.log(stdoutString);
             done();
         });
-        after(() => tmp.clean('documentation'));
+        after(() => {
+            tmp.clean('documentation');
+        });
 
         it('should display message', () => {
             expect(stdoutString).to.contain(
-                'Serving documentation from ./documentation/ at http://127.0.0.1:8080'
+                'Serving documentation from ./documentation/ at http://127.0.0.1:8085'
             );
         });
     });

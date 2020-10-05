@@ -1,6 +1,8 @@
 import * as chai from 'chai';
 import { temporaryDir, shell, pkg, exists, exec, read, shellAsync } from '../helpers';
+import chaiString from 'chai-string';
 
+chai.use(chaiString);
 const expect = chai.expect;
 const tmp = temporaryDir();
 
@@ -26,11 +28,14 @@ describe('CLI simple generation - extends app', () => {
             done('error');
         }
         stdoutString = ls.stdout.toString();
+        // console.log(stdoutString);
         appComponentFile = read(`${distFolder}/components/AppComponent.html`);
         myInitialClassFile = read(`${distFolder}/classes/MyInitialClass.html`);
         done();
     });
-    after(() => tmp.clean(distFolder));
+    after(() => {
+        tmp.clean(distFolder)
+    });
 
     it('AppComponent extends AnotherComponent', () => {
         expect(appComponentFile).to.contain('myprop');
@@ -52,7 +57,7 @@ describe('CLI simple generation - extends app', () => {
 
     it('CharactersService extends AbstractService', () => {
         let file = read(distFolder + '/injectables/CharactersService.html');
-        expect(file).to.contain(
+        expect(file).to.containIgnoreSpaces(
             'code><a href="../injectables/AbstractService.html" target="_self" >AbstractService'
         );
     });

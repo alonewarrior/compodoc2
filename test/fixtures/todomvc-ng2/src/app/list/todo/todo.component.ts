@@ -11,7 +11,6 @@ import { TodoStore } from '../../shared/services/todo.store';
  *    [todo]="todo"
  * </todo>
  * ```
- *
  * <example-url>/demo/mysample.component.html</example-url>
  */
 @Component({

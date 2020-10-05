@@ -708,8 +708,10 @@ export class ClassHelper {
         if (node.typeName) {
             _return = this.visitTypeName(node.typeName);
         } else if (node.type) {
-            if (node.type.kind) {
+            if (node.type.kind && !ts.isLiteralTypeNode(node.type)) {
                 _return = kindToType(node.type.kind);
+            } else if (node.type.kind && ts.isLiteralTypeNode(node.type) && node.type.literal) {
+                _return = '"' + node.type.literal.text + '"';
             }
             if (node.type.typeName) {
                 _return = this.visitTypeName(node.type.typeName);

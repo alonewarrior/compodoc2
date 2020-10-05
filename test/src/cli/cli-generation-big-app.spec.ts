@@ -1,7 +1,9 @@
 const eol = require('os').EOL;
 import * as chai from 'chai';
+import chaiString from 'chai-string';
 import { temporaryDir, shell, pkg, exists, exec, read, shellAsync } from '../helpers';
 
+chai.use(chaiString);
 const expect = chai.expect;
 const tmp = temporaryDir();
 
@@ -42,6 +44,7 @@ describe('CLI simple generation - big app', () => {
             done('error');
         }
         stdoutString = ls.stdout.toString();
+        // console.log(stdoutString);
         clockInterfaceFile = read(`${distFolder}/interfaces/ClockInterface.html`);
         searchFuncFile = read(`${distFolder}/interfaces/SearchFunc.html`);
 
@@ -325,7 +328,7 @@ describe('CLI simple generation - big app', () => {
     });
 
     it('should have override types for arguments of function', () => {
-        expect(todoStoreFile).to.contain('code><a href="../classes/Todo.html" target="_self" >To');
+        expect(todoStoreFile).to.containIgnoreSpaces('code><a href="../classes/Todo.html" target="_self" >To');
     });
 
     it('should have inherreturn type', () => {
@@ -360,7 +363,7 @@ describe('CLI simple generation - big app', () => {
 
     it('should support @HostListener', () => {
         expect(aboutComponentFile).to.contain('<code>mouseup(mouseX');
-        expect(aboutComponentFile).to.contain("i>Arguments : </i><code>'$event.clientX");
+        expect(aboutComponentFile).to.contain('i>Arguments : </i><code>\'$event.clientX');
     });
 
     it('should support extends for interface', () => {
@@ -382,7 +385,7 @@ describe('CLI simple generation - big app', () => {
 
     it('should support self-defined type', () => {
         expect(todoClassFile).to.contain('../miscellaneous/typealiases.html#PopupPosition');
-        expect(typeAliasesFile).to.contain('<code>ElementRef | HTMLElement</code>');
+        expect(typeAliasesFile).to.containIgnoreSpaces('<code><a href="https://angular.io/api/core/ElementRef" target="_blank">ElementRef</a> | HTMLElement</code>');
     });
 
     it('should support accessors for class', () => {
@@ -588,32 +591,28 @@ describe('CLI simple generation - big app', () => {
         expect(file).to.contain('<span class="modifier">Private</span>');
     });
 
-    it('should support union type with array', () => {
-        expect(todoComponentFile).to.contain('>string[] | Todo</a>');
+    it('should support union type with array - string[] | Todo', () => {
+        expect(todoComponentFile).to.containIgnoreSpaces('><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>[] | <a href="../classes/Todo.html" target="_self">Todo</a>');
     });
 
-    it('should support multiple union types with array', () => {
-        expect(todoComponentFile).to.contain('<code>(string | number)[]</code>');
+    it('should support multiple union types with array - (string | number)[]', () => {
+        expect(todoComponentFile).to.containIgnoreSpaces('(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)[]');
     });
 
-    it('should support multiple union types with array again', () => {
-        expect(typeAliasesFile).to.contain('<code>number | string | (number | string)[]</code>');
+    it('should support multiple union types with array again - number | string | (number | string)[]', () => {
+        expect(typeAliasesFile).to.containIgnoreSpaces('<code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a> | (<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)[]</code>');
     });
 
     it('should support union type with generic', () => {
-        expect(typeAliasesFile).to.contain(
-            '<code>Type&lt;TableCellRendererBase&gt; | TemplateRef&lt;any&gt;</code>'
+        expect(typeAliasesFile).to.containIgnoreSpaces(
+            '<code><a href="https://angular.io/api/core/Type" target="_blank">Type</a>&lt;TableCellRendererBase&gt; | <a href="https://angular.io/api/core/TemplateRef" target="_blank">TemplateRef</a>&lt;<a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>&gt;</code>'
         );
     });
 
     it('should support literal type', () => {
-        expect(typeAliasesFile).to.contain(
-            '<code>Pick&lt;NavigationExtras | replaceUrl&gt;</code>'
+        expect(typeAliasesFile).to.containIgnoreSpaces(
+            '<code>Pick&lt;<a href="https://angular.io/api/router/NavigationExtras" target="_blank">NavigationExtras</a> | replaceUrl&gt;</code>'
         );
-    });
-
-    it('should support multiple union types with array', () => {
-        expect(todoComponentFile).to.contain('<code>(string | number)[]</code>');
     });
 
     it('should support alone elements in their own entry menu', () => {
@@ -637,13 +636,13 @@ describe('CLI simple generation - big app', () => {
     });
 
     it('should support component metadata entryComponents', () => {
-        expect(aboutComponentFile).to.contain(
+        expect(aboutComponentFile).to.containIgnoreSpaces(
             '<code><a href="../classes/Todo.html" target="_self" >TodoComponent</a></code>'
         );
     });
 
     it('should support component metadata providers', () => {
-        expect(aboutComponentFile).to.contain(
+        expect(aboutComponentFile).to.containIgnoreSpaces(
             '<code><a href="../injectables/EmitterService.html" target="_self" >EmitterService</a></code>'
         );
     });
@@ -675,13 +674,13 @@ describe('CLI simple generation - big app', () => {
     });
 
     it('should support Tuple types', () => {
-        expect(typeAliasesFile).to.contain('<code>[Number, Number]</code>');
-        expect(typeAliasesFile).to.contain('[Todo, Todo]</a>');
+        expect(typeAliasesFile).to.containIgnoreSpaces('<code>[<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" target="_blank">Number</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" target="_blank">Number</a>]</code>');
+        expect(typeAliasesFile).to.containIgnoreSpaces('[<a href="../classes/Todo.html" target="_self">Todo</a>, <a href="../classes/Todo.html" target="_self">Todo</a>]');
     });
 
     it('should support Generic array types', () => {
-        expect(appComponentFile).to.contain(
-            '<a href="../classes/Todo.html" target="_self" >Observable&lt;Todo[]&gt;</a>'
+        expect(appComponentFile).to.containIgnoreSpaces(
+            'Observable&lt;<a href="../classes/Todo.html" target="_self" >Todo</a>[]&gt;'
         );
     });
 
@@ -730,7 +729,7 @@ describe('CLI simple generation - big app', () => {
     });
 
     it('correct support symbol type', () => {
-        expect(typeAliasesFile).to.contain('string | symbol | Array&lt;string | symbol&gt;');
+        expect(typeAliasesFile).to.contain('<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a> | symbol | Array&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a> | symbol&gt;');
     });
 
     it('correct support gorRoot & forChild methods for modules', () => {

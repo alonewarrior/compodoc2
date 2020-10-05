@@ -4,12 +4,14 @@
         "target": "es2015",
         "outDir": "./dist",
         "sourceMap": false,
+        "esModuleInterop": true,
         "typeRoots": [
             "../../node_modules/@types"
         ],
         "types": [
             "mocha",
             "chai",
+            "chai-string",
             "node"
         ]
     },

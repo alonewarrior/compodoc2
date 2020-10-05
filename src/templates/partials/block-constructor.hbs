@@ -51,15 +51,15 @@
                                                     {{#if name}}
                                                         <td>{{name}}</td>
                                                     {{/if}}
-                                                  
+
                                                     {{#one-parameter-has ../tags 'type'}}
                                                         <td>
                                                             {{#if type}}
-                                                                {{> link-type type=type }}
+                                                                {{> link-type2 type=type }}
                                                             {{/if}}
                                                         </td>
                                                     {{/one-parameter-has}}
-                                                  
+
                                                     <td>
                                                         {{#if optional}}
                                                             {{t "yes" }}
@@ -67,7 +67,7 @@
                                                             {{t "no" }}
                                                         {{/if}}
                                                     </td>
-                                                    
+
                                                     {{#one-parameter-has ../tags 'comment'}}
                                                         <td>
                                                             {{#if comment}}

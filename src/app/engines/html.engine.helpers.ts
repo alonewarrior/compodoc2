@@ -25,6 +25,7 @@ import { JsdocParamsValidHelper } from './html-engine-helpers/jsdoc-params-valid
 import { JsdocParamsHelper } from './html-engine-helpers/jsdoc-params.helper';
 import { JsdocReturnsCommentHelper } from './html-engine-helpers/jsdoc-returns-comment.helper';
 import { LinkTypeHelper } from './html-engine-helpers/link-type.helper';
+import { LinkType2Helper } from './html-engine-helpers/link-type2.helper';
 import { ModifIconHelper } from './html-engine-helpers/modif-icon.helper';
 import { ModifKindHelper } from './html-engine-helpers/modif-kind-helper';
 import { ObjectLengthHelper } from './html-engine-helpers/object-length.helper';
@@ -63,6 +64,7 @@ export class HtmlEngineHelpers {
         this.registerHelper(bars, 'jsdoc-params-valid', new JsdocParamsValidHelper());
         this.registerHelper(bars, 'jsdoc-default', new JsdocDefaultHelper());
         this.registerHelper(bars, 'linkType', new LinkTypeHelper());
+        this.registerHelper(bars, 'linkType2', new LinkType2Helper());
         this.registerHelper(bars, 'indexableSignature', new IndexableSignatureHelper());
         this.registerHelper(bars, 'object', new ObjectHelper());
         this.registerHelper(bars, 'objectLength', new ObjectLengthHelper());

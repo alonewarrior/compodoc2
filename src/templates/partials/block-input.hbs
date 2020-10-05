@@ -12,7 +12,7 @@
                 {{#if type}}
                 <tr>
                     <td class="col-md-4">
-                        <i>{{t "type" }} : </i>{{> link-type type=type }}
+                        <i>{{t "type" }} : </i>{{> link-type2 type=type }}
                     </td>
                 </tr>
                 {{/if}}
@@ -28,14 +28,14 @@
                         {{#if inheritance}}
                             <tr>
                                 <td class="col-md-4" colspan="2">
-                                    <div class="io-line">{{t "inherited-from" }} {{> link-type type=inheritance.file }}</div>
+                                    <div class="io-line">{{t "inherited-from" }} {{> link-type2 type=inheritance.file }}</div>
                                 </td>
                             </tr>
                         {{/if}}
                         <tr>
                             <td class="col-md-2" colspan="2">
                                 {{#if inheritance}}
-                                    <div class="io-line">{{t "defined-in" }} {{> link-type type=inheritance.file withline=true }}</div>
+                                    <div class="io-line">{{t "defined-in" }} {{> link-type2 type=inheritance.file withline=true }}</div>
                                 {{else}}
                                     <div class="io-line">{{t "defined-in" }} <a href="" data-line="{{{line}}}" class="link-to-prism">{{../element.file}}:{{{line}}}</a></div>
                                 {{/if}}

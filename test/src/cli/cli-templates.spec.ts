@@ -28,9 +28,12 @@ describe('CLI handlebars templates', () => {
             indexFile = read(`${distFolder}/index.html`);
             barComponentFile = read(`${distFolder}/components/BarComponent.html`);
             fooComponentFile = read(`${distFolder}/components/FooComponent.html`);
+            console.log(ls.stdout.toString());
             done();
         });
-        after(() => tmp.clean(distFolder));
+        after(() => {
+            tmp.clean(distFolder)
+        });
 
         it('should use templated "page.hbs"', () => {
             expect(indexFile).to.contain('<span>THIS IS TEST CONTENT</span>');
